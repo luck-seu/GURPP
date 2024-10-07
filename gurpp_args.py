@@ -62,12 +62,10 @@ def get_default_arguments():
             pre_train_region_emb='experiments/gurp_model/XXXXXX', # path to pre-trained region embedding
             check_counts='data/task/check_counts.npy',
             crime_counts='data/task/crime_counts.npy',
-
             hop_k=2,
             sub_max_nsize=50,
             crime_epoch=200,
             check_epoch=200,
-
             model_save_dir='experiments/gurp_prompt',
         ),
     )

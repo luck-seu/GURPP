@@ -3,17 +3,14 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import KFold
 import numpy as np
 
-
 crime_counts = np.load('data/task/crime_counts.npy', allow_pickle=True)
 check_counts = np.load('data/task/check_counts.npy', allow_pickle=True)
-
 
 def regression(X_train, y_train, X_test, alpha):
     reg = linear_model.Ridge(alpha=alpha)
     reg.fit(X_train, y_train)
     y_pred = reg.predict(X_test)
     return y_pred
-
 
 def kf_predict(X, Y):
     kf = KFold(n_splits=5)

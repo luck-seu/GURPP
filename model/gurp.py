@@ -7,7 +7,6 @@ import torch.nn.functional as F
 from loss import attr_contrastive_loss_op, mobility_loss
 from model.hgt import HGT
 
-
 class AutoEncoder(nn.Module):
     def __init__(self, in_dim, hid_dim, out_dim):
         super(AutoEncoder, self).__init__()

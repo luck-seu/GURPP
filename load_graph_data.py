@@ -1,11 +1,11 @@
 import os.path
 import random
 
+import dgl
 import numpy as np
 import torch
-import dgl
+from sklearn.preprocessing import StandardScaler
 from tqdm import tqdm
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 
 class HeteroGraphData(object):
@@ -94,7 +94,6 @@ class HeteroGraphData(object):
         print('hetero graph constructed.')
         print(self.hg)
 
-
     def load_kg(self, reverse=False):
         facts_str = []
         print('loading knowledge graph...')
@@ -110,10 +109,8 @@ class HeteroGraphData(object):
         else:
             all_rels = sorted(origin_rels)
 
-        # 读取全部实体
         all_ents = sorted(list(set([x[0] for x in facts_str] + [x[2] for x in facts_str])))
 
-        # 如果实体的首字母是'mhtr'，则认为是曼哈顿180个区域实体
         mht_region_ents = [x for x in all_ents if x[:4] == 'mhtr']
         mht_region_ents = sorted(mht_region_ents, key=lambda y: int(y[4:]))
 
@@ -158,7 +155,6 @@ class HeteroGraphData(object):
         ent2id = dict([(x, i) for i, x in enumerate(ents)])
         rel2id = dict([(x, i) for i, x in enumerate(all_rels)])
 
-        # id形式的triplets
         if reverse:
             kg_data = ([[ent2id[x[0]], rel2id[x[1]], ent2id[x[2]]] for x in facts_str] +
                        [[ent2id[x[2]], rel2id[x[1] + '_rev'], ent2id[x[0]]] for x in facts_str])
@@ -341,7 +337,6 @@ class HeteroGraphData(object):
         return region_subgraphs, region_sub_node_dicts
 
     def get_region_sub_homo(self, ent_id, hop_k=1, max_node_size=1000):
-
         in_neighbors = [ent_id]
         for i in range(1, hop_k + 1):
             predecessors = [x for x in in_neighbors for x in self.g.predecessors(x)]
@@ -382,11 +377,9 @@ class GURPData(object):
             self.region_attr_subgraph_all, self.region_sub_nodes_dicts = hkg.get_region_sub_test_all()
         else:
             self.region_attr_subgraph_all, self.region_sub_nodes_dicts = hkg.get_region_sub_all()
-
         print('subgraph data constructed.')
 
     def get_all_samples(self, ratio, seed=2024):
-
         sp_pos_samples = []
         sp_neg_samples = []
         random.seed(seed)

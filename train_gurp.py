@@ -59,7 +59,6 @@ hkg.init_hetero_graph_features(image=args['data']['image'], flow=args['data']['f
 logger.info('feature loaded...')
 
 gurp_data = GURPData(hkg, if_test=False)
-
 gurp_model = GURPModel(args['gurp_model']).to(device)
 optimizer = torch.optim.Adam(gurp_model.parameters(), lr=args[training_key]['lr'], weight_decay=args[training_key]['weight_decay'])
 
