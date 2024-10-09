@@ -98,7 +98,7 @@ class HeteroGraphData(object):
         facts_str = []
         print('loading knowledge graph...')
         with open(self.kg_dir, 'r') as f:
-            f.readline() # 跳过第一行
+            f.readline()
             for line in tqdm(f.readlines()):
                 x = line.strip().split(',')
                 facts_str.append([x[0], x[1], x[2]])
@@ -277,7 +277,6 @@ class HeteroGraphData(object):
         region_subgraphs = {}
         region_sub_node_dicts = {}
         for i in range(self.num_mht_region_ent):
-            # 一阶
             fanout = {'JCateOf': 0, 'BrandOf': 0, 'Cate1Of': 0, 'HasJunc': -1, 'HasPoi': -1, 'HasRoad': -1,
                       'NearBy': -1, 'RCateOf': 0}
             sub_graph = dgl.sampling.sample_neighbors(self.hg, {'region': i}, fanout,
@@ -288,18 +287,16 @@ class HeteroGraphData(object):
             sub_junc_nodes = sub_graph.edges(etype='HasJunc')[1]
             sub_region_nodes = sub_graph.edges(etype='NearBy')[1]
 
-            # 随机采样一部分poi节点
-            # seed = 0
-            # random.seed(seed)
-            # sub_poi_nodes = random.sample(sub_poi_nodes.tolist(), int(len(sub_poi_nodes) * 0.9))
-            # sub_road_nodes = random.sample(sub_road_nodes.tolist(), int(len(sub_road_nodes) * 0.9))
-            # sub_junc_nodes = random.sample(sub_junc_nodes.tolist(), int(len(sub_junc_nodes) * 0.9))
-            #
-            # sub_poi_nodes = torch.tensor(sub_poi_nodes, dtype=torch.long).to(self.graph_device)
-            # sub_road_nodes = torch.tensor(sub_road_nodes, dtype=torch.long).to(self.graph_device)
-            # sub_junc_nodes = torch.tensor(sub_junc_nodes, dtype=torch.long).to(self.graph_device)
+            seed = 0
+            random.seed(seed)
+            sub_poi_nodes = random.sample(sub_poi_nodes.tolist(), int(len(sub_poi_nodes) * 0.9))
+            sub_road_nodes = random.sample(sub_road_nodes.tolist(), int(len(sub_road_nodes) * 0.9))
+            sub_junc_nodes = random.sample(sub_junc_nodes.tolist(), int(len(sub_junc_nodes) * 0.9))
 
-            # 二阶
+            sub_poi_nodes = torch.tensor(sub_poi_nodes, dtype=torch.long).to(self.graph_device)
+            sub_road_nodes = torch.tensor(sub_road_nodes, dtype=torch.long).to(self.graph_device)
+            sub_junc_nodes = torch.tensor(sub_junc_nodes, dtype=torch.long).to(self.graph_device)
+
             poi_brand_graph = dgl.sampling.sample_neighbors(self.hg, {'poi': sub_poi_nodes},
                                                             {'JCateOf': 0, 'BrandOf': -1, 'Cate1Of': 0, 'HasJunc': 0,
                                                              'HasPoi': 0, 'HasRoad': 0, 'NearBy': 0, 'RCateOf': 0},
@@ -406,7 +403,6 @@ class GURPData(object):
 
             return sp_pos_samples, sp_neg_samples
 
-
     def get_batch_samples(self, sp_pos_all, sp_neg_all, batch_size, args):
         reg_sub_batch = []
         sp_pos_batch = []
@@ -444,7 +440,6 @@ class GURPData(object):
             else:
                 sp_pos_cur_batch = []
                 sp_neg_cur_batch = []
-                attr_pos_cur_batch = []
                 for j in range(batch_size):
                     sp_pos_cur_samples = random.sample(sp_pos_all[i * batch_size + j], sample_size)
                     sp_neg_cur_samples = random.sample(sp_neg_all[i * batch_size + j], sample_size)

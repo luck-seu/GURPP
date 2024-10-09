@@ -1,7 +1,7 @@
 def get_default_arguments():
     return dict(
         data=dict(
-            kg_dir='data/nymhtkg/mht180.csv',
+            kg_dir='data/nymhtkg/mht180_demo.csv',
             kg_reverse=False,
             kg_export=True,
             hg_feature_dir=['data/nymhtkg/kge_pretrained_transR/TransR_UrbanKG_1/UrbanKG_TransR_entity.npy',],
