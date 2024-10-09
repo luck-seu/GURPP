@@ -18,7 +18,7 @@ Official code for: **Urban Region Embedding Pre-training and Prompting: A Graph-
 - pandas==1.5.2
 
 ## Running
-to run the code, you can run the following command:
+To run the code, you can run the following command:
 
 1. train pre-training model
 ```bash
@@ -28,7 +28,8 @@ python train_gurp.py
 ```bash
 python train_gurp_prompt.py
 ```
+3. manually-defined prompt can be designed by modifying the method `get_region_sub_test_all()` in `load_graph_data.py` and then input them to the pretrained model to infer the results
 
-to reproduce the results in the paper, you can run the following command:
+To reproduce the results in the paper, you can run the following command:
 ```bash
 python reproduce.py
