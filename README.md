@@ -135,3 +135,5 @@ python test_gurp.py
 <img src='figure\PromptPerfermance2.png' alt="MainPerformance1" width="600">
 
 ### Visualization
+We visualised the city area embeddings trained on the Chicago dataset using the dimensionality reduction tool, including baselines and **GURP**(ours). We also visualised the downstream task dataset in Chicago.
+<img src='figure\visualization.jpg' alt="MainPerformance1">
