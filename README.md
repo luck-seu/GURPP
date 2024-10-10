@@ -1,3 +1,8 @@
+<div style="text-align: center;">
+    <img src='logo.png' alt="logo" width="500">
+</div>
+
+
 <h2 align="center">🌇 Urban Region Embedding Pre-training and Prompting: A Graph-based Approach </h2>
 
 <div align="center">
@@ -49,7 +54,7 @@ python train_gurp.py
 ### Prompt
 #### Task-learnable Prompt
 
-<img src='task_learnable.png' alt="framework" width="600">
+<img src='task_learnable.png' alt="task_learnable" width="600">
 
 To train task-learnable prompt model, you can run the following command:
 ```bash
@@ -58,7 +63,7 @@ python train_gurp_prompt.py
 
 #### Manually-designed Prompt
 
-<img src='manually-designed.png' alt="framework" width="600">
+<img src='manually_designed.png' alt="manually_designed" width="600">
 
 Manually-designed prompt can be designed by modifying the method `get_region_sub_test_all()` in `load_graph_data.py` and then input them to the pretrained model to infer the results.
 ```python
@@ -77,7 +82,6 @@ sub_region_nodes = sub_graph.edges(etype='NearBy')[1]
 
 seed = 0
 random.seed(seed)
-# Assuming sub_poi_nodes, sub_road_nodes, and sub_junc_nodes are numpy arrays or lists
 # Randomly sample 90% of the POI nodes, road nodes and junction nodes
 sub_poi_nodes = random.sample(sub_poi_nodes.tolist(), int(len(sub_poi_nodes) * 0.9))
 sub_road_nodes = random.sample(sub_road_nodes.tolist(), int(len(sub_road_nodes) * 0.9))
@@ -114,9 +118,10 @@ road_cate_graph = dgl.sampling.sample_neighbors(self.hg, {'road': sub_road_nodes
 
 - [ ] **Release the full datasets.**
 
-<!-- ## Performance
+## Performance
 ### Main Performance
 
 ### Prompt Performance
 
-### Visualization -->
+### Visualization
+
