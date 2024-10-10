@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-    <img height="100" src="Logo.png?sanitize=true" />
+    <img height="100" src="logo.png?sanitize=true" />
 </div>
 
 
