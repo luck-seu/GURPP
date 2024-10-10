@@ -9,7 +9,7 @@
 
 <div align="center">
 
-| **[Overview](#overview)** | **[Requirements](#requirements)** | **[Quick Start](#quick-start)** |
+| **[Overview](#overview)** | **[Requirements](#requirements)** | **[Quick Start](#quick-start)** | **[TODO List](#todo-list)** | **[Performance](#performance)** |
 
 </div>
 
