@@ -48,11 +48,18 @@ python train_gurp.py
 ```
 ### Prompt
 #### Task-learnable Prompt
+
+<img src='task_learnable.png' alt="framework" width="600">
+
 To train task-learnable prompt model, you can run the following command:
 ```bash
 python train_gurp_prompt.py
 ```
+
 #### Manually-designed Prompt
+
+<img src='manually-designed.png' alt="framework" width="600">
+
 Manually-designed prompt can be designed by modifying the method `get_region_sub_test_all()` in `load_graph_data.py` and then input them to the pretrained model to infer the results.
 ```python
 # fanout configuration to control the inclusion or exclusion of specific data types
@@ -101,8 +108,15 @@ road_cate_graph = dgl.sampling.sample_neighbors(self.hg, {'road': sub_road_nodes
                                                 edge_dir='out', copy_ndata=True, copy_edata=True)
 ```
 
-### Dataset
-The more detailed dataset used in GURPP will be released after accepted.
+## TODO List
+
+> **Note** Current experimental datasets is New York City
+
+- [ ] **Release the full datasets.**
 
 ## Performance
+### Main Performance
 
+### Prompt Performance
+
+### Visualization
