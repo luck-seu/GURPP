@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-    <img height="100" src="logo.png?sanitize=true" />
+    <img height="100" src="figure\logo.png?sanitize=true" />
 </div>
 
 
@@ -20,7 +20,7 @@
 
 The Overview of GURPP is shown as follows:
 
-<img src='img_1.png' alt="framework" >
+<img src='figure\img_1.png' alt="framework" >
 
 1. Create urban region graph that integrates specific urban entities.
 2. Extract subgraph of each region according to the graph pattern.
@@ -56,7 +56,7 @@ python train_gurp.py
 ### Prompt
 #### Task-learnable Prompt
 
-<img src='task_learnable.png' alt="task_learnable" width="600">
+<img src='figure\task_learnable.png' alt="task_learnable" width="600">
 
 To train task-learnable prompt model, you can run the following command:
 ```bash
@@ -65,7 +65,7 @@ python train_gurp_prompt.py
 
 #### Manually-designed Prompt
 
-<img src='manually_designed.png' alt="manually_designed" width="600">
+<img src='figure\manually_designed.png' alt="manually_designed" width="600">
 
 Manually-designed prompt can be designed by modifying the method `get_region_sub_test_all()` in `load_graph_data.py` and then input them to the pretrained model to infer the results.
 ```python
@@ -113,6 +113,12 @@ road_cate_graph = dgl.sampling.sample_neighbors(self.hg, {'road': sub_road_nodes
                                                     'HasPoi': 0, 'HasRoad': 0, 'NearBy': 0, 'RCateOf': -1},
                                                 edge_dir='out', copy_ndata=True, copy_edata=True)
 ```
+After modifying the above parameters to adjust the manually-designed prompt, you should modify the `if_test = False` to `if_test = Ture` in `test_gurp.py`.
+
+You can use the following command to test the manually-designed prompt:
+```bash
+python test_gurp.py
+```
 
 ## TODO List
 
@@ -122,8 +128,10 @@ road_cate_graph = dgl.sampling.sample_neighbors(self.hg, {'road': sub_road_nodes
 
 ## Performance
 ### Main Performance
+<img src='figure\MainPerformance1.png' alt="MainPerformance1">
 
 ### Prompt Performance
+<img src='figure\PromptPerfermance1.png' alt="MainPerformance1" width="600">
+<img src='figure\PromptPerfermance2.png' alt="MainPerformance1" width="600">
 
 ### Visualization
-
