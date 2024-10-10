@@ -1,5 +1,7 @@
-<div style="text-align: center;">
-    <img src='logo.png' alt="logo" width="500">
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+    <img height="100" src="Logo.png?sanitize=true" />
 </div>
 
 
