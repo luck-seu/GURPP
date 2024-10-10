@@ -41,6 +41,27 @@ The Overview of GURPP is shown as follows:
 
 ## Quick Start
 ### Code Structure
+```bash
+\---GURPP
+    |   downstream_task.py
+    |   emb.npy
+    |   gurpp_args.py
+    |   load_graph_data.py
+    |   loss.py
+    |   model.pth
+    |   README.md
+    |   test_gurp.py
+    |   train_gurp.py
+    |   train_gurp_prompt.py
+    +---data
+    |   +---nymhtkg
+    |   \---task
+    +---figure
+    \---model
+            gurp.py
+            hgt.py
+            prompt.py
+```
 
 ### Reproduce
 To reproduce the results in the paper, you can run the following command:
