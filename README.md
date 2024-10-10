@@ -13,7 +13,7 @@
 
 </div>
 
-🌇**GURPP** is a **G**raph-based **U**rban **R**egion **P**re-training and **P**rompting framework for region representation learning. This repository hosts the code of **GURPP**.
+🌇**GURPP** is a **G**raph-based **U**rban **R**egion **P**re-training and **P**rompting framework for region representation learning. Specifically, we first construct an **urban region graph** that integrates detailed spatial entity data for more effective urban region representation. Then, we develop a **subgraph-centric urban region pre-training model** to capture the heterogeneous and transferable patterns of interactions among entities. To further enhance the adaptability of these embeddings to different tasks, we design **two graph-based prompting methods** to incorporate explicit/hidden task knowledge.  Extensive experiments on various urban region prediction tasks and different cities demonstrate the superior performance of our GURPP framework. This repository hosts the code of **GURPP**.
 
 
 ## Overview
