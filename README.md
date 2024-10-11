@@ -153,4 +153,4 @@ road_cate_graph = dgl.sampling.sample_neighbors(self.hg, {'road': sub_road_nodes
 
 ### Visualization
 We visualised the city area embeddings trained on the Chicago dataset using the dimensionality reduction tool, including baselines and **GURP**(ours). We also visualised the downstream task dataset in Chicago.
-<img src='figure\visualization.jpg' alt="MainPerformance1">
+<img src='figure\visualization.png' alt="visualization">
