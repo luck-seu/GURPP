@@ -134,12 +134,6 @@ road_cate_graph = dgl.sampling.sample_neighbors(self.hg, {'road': sub_road_nodes
                                                     'HasPoi': 0, 'HasRoad': 0, 'NearBy': 0, 'RCateOf': -1},
                                                 edge_dir='out', copy_ndata=True, copy_edata=True)
 ```
-After modifying the above parameters to adjust the manually-designed prompt, you should modify the `if_test = False` to `if_test = Ture` in `test_gurp.py`.
-
-You can use the following command to test the manually-designed prompt:
-```bash
-python test_gurp.py
-```
 
 ## TODO List
 
