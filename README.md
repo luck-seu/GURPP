@@ -143,7 +143,7 @@ road_cate_graph = dgl.sampling.sample_neighbors(self.hg, {'road': sub_road_nodes
 
 ## Performance
 ### Main Performance
-<img src='figure\MainPerformance1.png' alt="MainPerformance1">
+<img src='figure\MainPerformance.png' alt="MainPerformance">
 
 ### Prompt Performance
 <img src='figure\PromptPerformance.png' alt="PromptPerfermance">
