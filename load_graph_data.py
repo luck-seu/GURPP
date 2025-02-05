@@ -380,12 +380,12 @@ class GURPData(object):
         sp_pos_samples = []
         sp_neg_samples = []
         random.seed(seed)
-        for i in range(self.hkg.num_chi_region_ent):
+        for i in range(self.hkg.num_mht_region_ent):
 
             region_nearby_neighbors = self.hg.successors(i, etype='NearBy')
             sp_pos_list = []
             sp_neg_list = []
-            for j in range(self.hkg.num_chi_region_ent):
+            for j in range(self.hkg.num_mht_region_ent):
                 if j in region_nearby_neighbors:
                     sp_pos_list.append(self.region_attr_subgraph_all[j])
                 else:
