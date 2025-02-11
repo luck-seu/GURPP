@@ -5,6 +5,8 @@ import numpy as np
 
 crime_counts = np.load('data/task/crime_counts.npy', allow_pickle=True)
 check_counts = np.load('data/task/check_counts.npy', allow_pickle=True)
+carbon_counts = np.load('data/task/carbon_counts.npy', allow_pickle=True)
+income_counts = np.load('data/task/income_counts.npy', allow_pickle=True)
 
 def regression(X_train, y_train, X_test, alpha):
     reg = linear_model.Ridge(alpha=alpha)
@@ -42,5 +44,15 @@ def predict_crime(emb):
 
 def predict_check(emb):
     y_pred, y_test = kf_predict(emb, check_counts)
+    mae, rmse, r2 = compute_metrics(y_pred, y_test)
+    return mae, rmse, r2
+
+def predict_carbon(emb):
+    y_pred, y_test = kf_predict(emb, carbon_counts)
+    mae, rmse, r2 = compute_metrics(y_pred, y_test)
+    return mae, rmse, r2
+
+def predict_income(emb):
+    y_pred, y_test = kf_predict(emb, income_counts)
     mae, rmse, r2 = compute_metrics(y_pred, y_test)
     return mae, rmse, r2

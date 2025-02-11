@@ -9,7 +9,7 @@
 
 <div align="center">
 
-| **[Overview](#overview)** | **[Requirements](#requirements)** | **[Quick Start](#quick-start)** | **[TODO List](#todo-list)** | **[Performance](#performance)** |
+| **[Overview](#overview)** | **[Requirements](#requirements)** | **[Quick Start](#quick-start)** | **[TODO List](#todo-list)** |
 
 </div>
 
@@ -77,16 +77,12 @@ python train_gurp.py
 ### Prompt
 #### Task-learnable Prompt
 
-<img src='figure\task_learnable.png' alt="task_learnable" width="600">
-
 To train task-learnable prompt model, you can run the following command:
 ```bash
 python train_gurp_prompt.py
 ```
 
 #### Manually-designed Prompt
-
-<img src='figure\manually_designed.png' alt="manually_designed" width="600">
 
 Manually-designed prompt can be designed by modifying the method `get_region_sub_test_all()` in `load_graph_data.py` and then input them to the pretrained model to infer the results.
 ```python
@@ -140,17 +136,3 @@ road_cate_graph = dgl.sampling.sample_neighbors(self.hg, {'road': sub_road_nodes
 > **Note** Current experimental datasets is New York City
 
 - [ ] **Release the full datasets.**
-
-## Performance
-### Main Performance
-<img src='figure\MainPerformance.png' alt="MainPerformance">
-
-### Prompt Performance
-<img src='figure\PromptPerformance.png' alt="PromptPerfermance">
-
-### Few-shot Performance
-<img src='figure\FewshotPerformance.png' alt="FewshotPerformance" width="600">
-
-### Visualization
-We visualised the city area embeddings trained on the Chicago dataset using the dimensionality reduction tool, including baselines and **GURP**(ours). We also visualised the downstream task dataset in Chicago.
-<img src='figure\visualization.png' alt="visualization">

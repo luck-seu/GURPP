@@ -132,6 +132,8 @@ class HeteroGraphData(object):
         road_cate_ents = sorted(list(set(road_cate_ents)))
         junc_cate_ents = [x[2] for x in facts_str if x[1] == 'Junction_JCateOf']
         junc_cate_ents = sorted(list(set(junc_cate_ents)))
+        streetview_ents = [x[2] for x in facts_str if x[1] == 'Region_StreetViewOf']
+        streetview_ents = sorted(list(set(streetview_ents)))
 
         region_ent2id = dict([(x, i) for i, x in enumerate(mht_region_ents)])
         poi_ent2id = dict([(x, i) for i, x in enumerate(poi_ents)])
@@ -141,11 +143,12 @@ class HeteroGraphData(object):
         brand_ent2id = dict([(x, i) for i, x in enumerate(brand_ents)])
         road_cate_ent2id = dict([(x, i) for i, x in enumerate(road_cate_ents)])
         junc_cate_ent2id = dict([(x, i) for i, x in enumerate(junc_cate_ents)])
+        streetview_ent2id = dict([(x, i) for i, x in enumerate(streetview_ents)])
         ent2id_dicts = {'region': region_ent2id, 'poi': poi_ent2id, 'road': road_ent2id, 'junction': junc_ent2id,
                         'cate1': cate1_ent2id, 'brand': brand_ent2id, 'road_cate': road_cate_ent2id,
-                        'junc_cate': junc_cate_ent2id}
+                        'junc_cate': junc_cate_ent2id, 'streetview': streetview_ent2id}
 
-        ents = mht_region_ents + poi_ents + road_ents + junc_ents + cate1_ents + brand_ents + road_cate_ents + junc_cate_ents
+        ents = mht_region_ents + poi_ents + road_ents + junc_ents + cate1_ents + brand_ents + road_cate_ents + junc_cate_ents + streetview_ents
         ent_range = {}
         start = 0
         for k, v in ent2id_dicts.items():
@@ -401,7 +404,7 @@ class GURPData(object):
             sp_pos_samples.append(sp_pos_list)
             sp_neg_samples.append(sp_neg_list)
 
-            return sp_pos_samples, sp_neg_samples
+        return sp_pos_samples, sp_neg_samples
 
     def get_batch_samples(self, sp_pos_all, sp_neg_all, batch_size, args):
         reg_sub_batch = []
@@ -420,7 +423,6 @@ class GURPData(object):
             for j in range(batch_size):
 
                 reg_cur_batch.append(self.region_attr_subgraph_all[i * batch_size + j])
-
                 reg_inf = self.hg.nodes['region'].data['inflow'][i * batch_size + j]
                 reg_outf = self.hg.nodes['region'].data['outflow'][i * batch_size + j]
                 reg_inf_cur_batch.append(reg_inf)

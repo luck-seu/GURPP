@@ -4,7 +4,7 @@ import sys
 import numpy as np
 from datetime import datetime
 
-from downstream_task import predict_crime, predict_check
+from downstream_task import predict_crime, predict_check, predict_carbon, predict_income
 from gurpp_args import get_default_arguments
 
 def get_logger(log_dir, name, log_filename='info.log', level=logging.INFO):
@@ -35,7 +35,11 @@ def reproduce_results():
     cur_out_emb = np.load('emb.npy')
     cri_mae, cri_rmse, cri_r2 = predict_crime(cur_out_emb)
     chk_mae, chk_rmse, chk_r2 = predict_check(cur_out_emb)
+    car_mae, car_rmse, car_r2 = predict_carbon(cur_out_emb)
+    inc_mae, inc_rmse, inc_r2 = predict_income(cur_out_emb)
     logger.info('crime test result, cri_mae: {}, cri_rmse: {}, cri_r2: {}'.format(cri_mae, cri_rmse, cri_r2))
     logger.info('check test result, chk_mae: {}, chk_rmse: {}, chk_r2: {}'.format(chk_mae, chk_rmse, chk_r2))
+    logger.info('carbon test result, car_mae: {}, car_rmse: {}, car_r2: {}'.format(car_mae, car_rmse, car_r2))
+    logger.info('income test result, inc_mae: {}, inc_rmse: {}, inc_r2: {}'.format(inc_mae, inc_rmse, inc_r2))
 
 reproduce_results()
