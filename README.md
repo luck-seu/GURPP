@@ -70,6 +70,8 @@ The Overview of GURPP is shown as follows:
 |   |
 |   +---experiments
 |   |   \---gurp_model
+|   |   \---gurp_prompt
+|   |
 |   +---figure
 |   \---model
 |           gurp.py
