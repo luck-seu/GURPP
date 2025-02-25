@@ -124,7 +124,7 @@ class HGT(nn.Module):
         n_layers,
         n_heads,
         batch_size,
-        agg_method="concat", use_norm=True,
+        use_norm=True,
     ):
         super(HGT, self).__init__()
         self.node_dict = node_dict
@@ -136,7 +136,6 @@ class HGT(nn.Module):
         self.n_heads = n_heads
         self.use_norm = use_norm
         self.batch_size = batch_size
-        self.agg_method = agg_method
         self.gcs = nn.ModuleList()
         self.adapt_ws = nn.ModuleList()
         for _ in range(len(node_dict)):

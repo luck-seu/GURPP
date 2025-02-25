@@ -4,7 +4,7 @@ import random
 import dgl
 import numpy as np
 import torch
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
 from tqdm import tqdm
 
 
@@ -211,7 +211,7 @@ class HeteroGraphData(object):
         if flow is not None:
             in_flow_feat = np.load(flow[0])
             out_flow_feat = np.load(flow[1])
-            scaler = StandardScaler()
+            scaler = MinMaxScaler(feature_range=(0,1))
             in_flow_scaled = scaler.fit_transform(in_flow_feat)
             out_flow_scaled = scaler.fit_transform(out_flow_feat)
             in_flow = torch.tensor(in_flow_scaled, dtype=torch.float32).to(device)

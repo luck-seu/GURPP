@@ -2,6 +2,7 @@ import random
 import logging
 import os
 import sys
+
 import numpy as np
 import torch
 from datetime import datetime
@@ -36,6 +37,10 @@ seed = args[training_key]['seed']
 torch.manual_seed(seed=seed)
 np.random.seed(seed)
 random.seed(seed)
+torch.cuda.manual_seed(seed)
+torch.cuda.manual_seed_all(seed)
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
 
 # Set up logger
 log_folder = args[training_key]['log_folder']
@@ -66,7 +71,7 @@ def get_batch_mobility(mobility, batch_size, batch_num):
     mobility_batch = []
     for i in range(batch_num):
         cur_batch_mob = mobility[i*batch_size:(i+1)*batch_size]
-        cur_batch_mob = cur_batch_mob.reshape(-1, batch_size, 180)
+        cur_batch_mob = cur_batch_mob[:, i*batch_size:(i+1)*batch_size]
         mobility_batch.append(cur_batch_mob)
     return mobility_batch
 
@@ -80,7 +85,6 @@ def train_model(args):
     best_rmse_crime = 10000
     best_r2_crime = 0
     best_epoch_crime = 0
-
 
     sp_pos_all, sp_neg_all = gurp_data.get_all_samples(args['ratio_dict'], args['seed'])
     logger.info('samples loaded...')
@@ -107,7 +111,8 @@ def train_model(args):
                         f"\t sp_loss: {sp_loss.item()} "
                         f"\t flow_loss: {flow_loss.item()} "
                         f"\t img_loss: {img_loss.item()}"
-                        f"\t pred_loss: {pred_loss.item()}")
+                        f"\t pred_loss: {pred_loss.item()}"
+                        f"\t loss: {loss.item()}")
 
         with torch.no_grad():
             cur_out_emb = out_emb.detach().cpu().numpy()
@@ -121,7 +126,6 @@ def train_model(args):
                 best_epoch_crime = epoch
                 best_emb_crime = out_emb
 
-    torch.save(gurp_model.state_dict(), args['save_model_path'] + f'/gurp_model_epoch_{epochs}_time_{train_time}.pth')
     np.save(args['save_model_path'] + f'/region_emb_epoch_{epochs}_time_{train_time}.npy', cur_out_emb)
     logger.info('best epoch: {}, best crime result, cri_mae: {}, cri_rmse: {}, cri_r2: {}'.format(best_epoch_crime, best_mae_crime, best_rmse_crime, best_r2_crime))
 

@@ -9,7 +9,7 @@
 
 <div align="center">
 
-| **[Overview](#overview)** | **[Requirements](#requirements)** | **[Quick Start](#quick-start)** | **[TODO List](#todo-list)** |
+| **[Overview](#overview)** | **[Requirements](#requirements)** | **[Quick Start](#quick-start)** | **[Dataset](#Dataset)** |
 
 </div>
 
@@ -42,49 +42,79 @@ The Overview of GURPP is shown as follows:
 ## Quick Start
 ### Code Structure
 ```bash
-\---GURPP
-    |   downstream_task.py
-    |   emb.npy
-    |   gurpp_args.py
-    |   load_graph_data.py
-    |   loss.py
-    |   model.pth
-    |   README.md
-    |   test_gurp.py
-    |   train_gurp.py
-    |   train_gurp_prompt.py
-    +---data
-    |   +---nymhtkg
-    |   \---task
-    +---figure
-    \---model
-            gurp.py
-            hgt.py
-            prompt.py
+|   downstream_task.py
+|   emb.npy
+|   gurpp_args.py
+|   load_graph_data.py
+|   loss.py
+|   README.md
+|   test_gurp.py
+|   train_gurp.py
+|   train_learnable_prompt.py
+|
++---data
+|   +---nymhtkg
+|   |   |   flow_in_per_hour.npy
+|   |   |   flow_out_per_hour.npy
+|   |   |   mobility_distribution.npy
+|   |   |   region_si_img.npy
+|   |   |
+|   |   \---kge_pretrained_transR
+|   |       \---TransR_UrbanKG_1
+|   \---task
+|           carbon_counts.npy
+|           check_counts.npy
+|           crime_counts.npy
+|           income_counts.npy
+|
++---experiments
+|   \---gurp_model
++---figure
+\---model
+        gurp.py
+        hgt.py
+        prompt.py
 ```
 
 ### Reproduce
-To reproduce the results in the paper, you can run the following command:
+To reproduce the GURP results, you can run the following command:
 ```bash
 python test_gurp.py
 ```
 
-### Pre-train
-To pre-train the gurp model, you can run the following command:
-```bash
-python train_gurp.py
-```
+### Pre-train GURP
+To pre-train the GURP model, please following the steps below: 
+
+1. Download the pre-trained kge embeddings from [UrbanKG_TransR_entity](<https://drive.google.com/file/d/1OHEU-XPutEmhOvP0To2VhVakNhxkbPdp/view?usp=sharing>). After downloading, move the dataset to the `data/nymhtkg/kge_pretrained_transR/TransR_UrbanKG_1` directory. 
+- ```bash
+  mkdir -p data/nymhtkg/kge_pretrained_transR/TransR_UrbanKG_1
+  ```
+2. Download the prepared NYC Manhattan KG from [mht180_prepared](<https://drive.google.com/file/d/1KqQjyOSEXhcgJevWVRljhp2sC6nalKmd/view?usp=sharing>). After downloading, move the dataset to the `data/nymhtkg` directory.
+- ```bash
+  mkdir -p data/nymhtkg
+  ```
+3. You then can run the following command to pre-train the GURP model.
+- ```bash
+  python train_gurp.py
+  ```
+4. The training log will be saved in the `experiments/gurp_model` directory.
+
 ### Prompt
 #### Task-learnable Prompt
 
-To train task-learnable prompt model, you can run the following command:
+To train task-learnable prompt model, you can run the following command.
 ```bash
-python train_gurp_prompt.py
+python train_learnable_prompt.py
 ```
+And the training log will be saved in the `experiments/gurp_prompt` directory.
 
 #### Manually-designed Prompt
 
-Manually-designed prompt can be designed by modifying the method `get_region_sub_test_all()` in `load_graph_data.py` and then input them to the pretrained model to infer the results.
+Manually-designed prompt can be designed by following steps.
+
+1. Set the construct parameter `if_test` of GURPData as `true`.
+
+2. Modify the method `get_region_sub_test_all()` in `load_graph_data.py` and then input them to the pretrained model to infer the results.
 ```python
 # fanout configuration to control the inclusion or exclusion of specific data types
 # 0: exclude (ignore) the information
@@ -131,8 +161,9 @@ road_cate_graph = dgl.sampling.sample_neighbors(self.hg, {'road': sub_road_nodes
                                                 edge_dir='out', copy_ndata=True, copy_edata=True)
 ```
 
-## TODO List
+## Dataset
 
-> **Note** Current experimental datasets is New York City
-
-- [ ] **Release the full datasets.**
+- Urban Region Graph in Manhattan of NYC (in the format of triples):
+  - `mht180_prepared.csv`: The urban region graph in Manhattan of NYC.
+- Pretrained nymht KGE embeddings for urban region entities:
+  - `TransR_UrbanKG_1`: The pretrained nymht KGE embeddings for urban region entities.

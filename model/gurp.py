@@ -43,8 +43,7 @@ class GURPModel(nn.Module):
         self.edge_dict = args['edge_dict']
         self.attr_graph_encoder = HGT(node_dict=self.node_dict, edge_dict=self.edge_dict,n_inp=args['node_dim'][0],
                                       n_hid=args['node_dim'][1], n_out=args['node_dim'][2], n_layers=args['n_layers'],
-                                      n_heads=args['n_heads'], batch_size=args['batch_size'], agg_method=args['agg_method'],
-                                      use_norm=args['use_norm'])
+                                      n_heads=args['n_heads'], batch_size=args['batch_size'], use_norm=args['use_norm'])
         # flow encoder
         self.flow_encoder = AutoEncoder(in_dim=args['flow_dim'][0], hid_dim=args['flow_dim'][1], out_dim=args['flow_dim'][2])
         # img projector
@@ -72,7 +71,7 @@ class GURPModel(nn.Module):
             nn.ReLU()
         )
         self.region_predictor = nn.Sequential(
-            nn.Linear(args['flow_dim'][2], args['node_dim'][2]),
+            nn.Linear(args['out_dim'], args['node_dim'][2]),
             nn.ReLU()
         )
 
