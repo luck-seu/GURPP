@@ -5,7 +5,7 @@
 </div>
 
 
-<h2 align="center">🌇 Urban Region Embedding Pre-training and Prompting: A Graph-based Approach </h2>
+<h2 align="center">🌇 Urban Region Pre-training and Prompting: A Graph-based Approach </h2>
 
 <div align="center">
 

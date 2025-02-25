@@ -95,7 +95,7 @@ def generate_batch_data(feature_all, size_sub_graph, train_index, adj_all, devic
         idx += n
     return feature_batch.to(device), adj_batch.to(device), idxs_batch.long().to(device)
 
-def task_prompt(task_counts, epochs=200, size_sub_graph=50, lr=0.001, weight_decay=0.05):
+def task_prompt(task_counts, epochs=200, size_sub_graph=50, lr=0.001, weight_decay=0.0005):
     kf = KFold(n_splits=5)
     y_preds = []
     y_truths = []
@@ -153,4 +153,4 @@ logger.info('****************************** task crime *************************
 task_prompt(crime_counts, epochs=200, size_sub_graph=50, lr=0.001, weight_decay=0.0003)
 
 logger.info('****************************** task check ***************************')
-task_prompt(check_counts.reshape(180,1), epochs=200, size_sub_graph=50, lr=0.001, weight_decay=0.05)
+task_prompt(check_counts.reshape(180,1), epochs=200, size_sub_graph=50, lr=0.001, weight_decay=0.001)
