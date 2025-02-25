@@ -42,38 +42,39 @@ The Overview of GURPP is shown as follows:
 ## Quick Start
 ### Code Structure
 ```bash
-|   downstream_task.py
-|   emb.npy
-|   gurpp_args.py
-|   load_graph_data.py
-|   loss.py
-|   README.md
-|   test_gurp.py
-|   train_gurp.py
-|   train_learnable_prompt.py
-|
-+---data
-|   +---nymhtkg
-|   |   |   flow_in_per_hour.npy
-|   |   |   flow_out_per_hour.npy
-|   |   |   mobility_distribution.npy
-|   |   |   region_si_img.npy
-|   |   |
-|   |   \---kge_pretrained_transR
-|   |       \---TransR_UrbanKG_1
-|   \---task
-|           carbon_counts.npy
-|           check_counts.npy
-|           crime_counts.npy
-|           income_counts.npy
-|
-+---experiments
-|   \---gurp_model
-+---figure
-\---model
-        gurp.py
-        hgt.py
-        prompt.py
++---GURPP
+|   |   downstream_task.py
+|   |   emb.npy
+|   |   gurpp_args.py
+|   |   load_graph_data.py
+|   |   loss.py
+|   |   README.md
+|   |   test_gurp.py
+|   |   train_gurp.py
+|   |   train_learnable_prompt.py
+|   |
+|   +---data
+|   |   +---nymhtkg
+|   |   |   |   flow_in_per_hour.npy
+|   |   |   |   flow_out_per_hour.npy
+|   |   |   |   mobility_distribution.npy
+|   |   |   |   region_si_img.npy
+|   |   |   |
+|   |   |   \---kge_pretrained_transR
+|   |   |       \---TransR_UrbanKG_1
+|   |   \---task
+|   |           carbon_counts.npy
+|   |           check_counts.npy
+|   |           crime_counts.npy
+|   |           income_counts.npy
+|   |
+|   +---experiments
+|   |   \---gurp_model
+|   +---figure
+|   \---model
+|           gurp.py
+|           hgt.py
+|           prompt.py
 ```
 
 ### Reproduce
