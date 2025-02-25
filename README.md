@@ -84,6 +84,7 @@ To reproduce the GURP results, you can run the following command:
 ```bash
 python test_gurp.py
 ```
+The test log will be saved in the `experiments/gurp_prompt` directory. Please ensure that this folder has been created following code structure before testing, otherwise, you might encounter a 'file not found' error.
 
 ### Pre-train GURP
 To pre-train the GURP model, please following the steps below: 
