@@ -43,7 +43,7 @@ def get_default_arguments():
             mobility='data/nymhtkg/mobility_distribution.npy',
             ratio_dict={'sp_pos': 1, 'sp_neg': 1},
             batch_size=180,
-            epochs=1000,
+            epochs=500,
             pred_loss_weight=0.01,
 
             save_model_path='experiments/gurp_model',
