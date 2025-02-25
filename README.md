@@ -100,7 +100,7 @@ To pre-train the GURP model, please following the steps below:
 - ```bash
   python train_gurp.py
   ```
-4. The training log will be saved in the `experiments/gurp_model` directory.
+4. The training log will be saved in the `experiments/gurp_model` directory. Please ensure that this folder has been created following code structure before training, otherwise, you might encounter a 'file not found' error.
 
 ### Prompt
 #### Task-learnable Prompt
@@ -109,7 +109,7 @@ To train task-learnable prompt model, you can run the following command.
 ```bash
 python train_learnable_prompt.py
 ```
-And the training log will be saved in the `experiments/gurp_prompt` directory.
+And the training log will be saved in the `experiments/gurp_prompt` directory. Please ensure that this folder has been created following code structure before training, otherwise, you might encounter a 'file not found' error.
 
 #### Manually-designed Prompt
 

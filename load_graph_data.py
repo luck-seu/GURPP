@@ -279,6 +279,7 @@ class HeteroGraphData(object):
 
         region_subgraphs = {}
         region_sub_node_dicts = {}
+
         for i in range(self.num_mht_region_ent):
             fanout = {'JCateOf': 0, 'BrandOf': 0, 'Cate1Of': 0, 'HasJunc': -1, 'HasPoi': -1, 'HasRoad': -1,
                       'NearBy': -1, 'RCateOf': 0}
