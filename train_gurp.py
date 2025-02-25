@@ -117,8 +117,6 @@ def train_model(args):
         with torch.no_grad():
             cur_out_emb = out_emb.detach().cpu().numpy()
             cri_mae, cri_rmse, cri_r2 = predict_crime(cur_out_emb)
-            logger.info('epoch: {}, crime validating result, cri_mae: {}, cri_rmse: {}, cri_r2: {}'.format(epoch, cri_mae,cri_rmse,cri_r2))
-
             if cri_rmse < best_rmse_crime and cri_mae < best_mae_crime and best_r2_crime < cri_r2:
                 best_rmse_crime = cri_rmse
                 best_mae_crime = cri_mae
